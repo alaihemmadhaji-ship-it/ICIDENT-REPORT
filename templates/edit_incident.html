@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="card shadow-sm mx-auto" style="max-width: 600px;">
+    <div class="card-header bg-warning text-dark">
+        <h4 class="mb-0">Edit Incident</h4>
+    </div>
+    <div class="card-body">
+        <form method="POST">
+            {% csrf_token %}
+
+            <div class="mb-3">
+                <label class="form-label">Title</label>
+                <input name="title" value="{{ incident.title }}" class="form-control" required>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Description</label>
+                <textarea name="description" class="form-control" rows="4">{{ incident.description }}</textarea>
+            </div>
+
+
+
+            <div class="mb-3">
+                <label class="form-label">Severity</label>
+                <select name="severity" class="form-select">
+                    <option value="minor" {% if incident.severity == 'minor' %}selected{% endif %}>Minor</option>
+                    <option value="medium" {% if incident.severity == 'medium' %}selected{% endif %}>Medium</option>
+                    <option value="high" {% if incident.severity == 'high' %}selected{% endif %}>High</option>
+                    <option value="critical" {% if incident.severity == 'critical' %}selected{% endif %}>Critical</option>
+                </select>
+            </div>
+
+            <button class="btn btn-warning w-100">Update Incident</button>
+        </form>
+    </div>
+</div>
+
+{% endblock %}

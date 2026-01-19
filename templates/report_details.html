@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h3 class="mb-3">Incident Report</h3>
+
+<div class="card">
+    <div class="card-body">
+
+        <h5 class="card-title">{{ report.incident.title }}</h5>
+
+        <p><strong>Description:</strong><br>
+            {{ report.incident.description }}
+        </p>
+
+        <p><strong>Status:</strong>
+            <span class="badge bg-info">
+                {{ report.status }}
+            </span>
+        </p>
+
+        <p><strong>Admin Notes:</strong><br>
+            {{ report.admin_notes }}
+        </p>
+
+        <p class="text-muted">
+            Last updated: {{ report.updated_at }}
+        </p>
+
+        <a href="{% url 'reports' %}" class="btn btn-secondary mt-3">
+            Back to Reports
+        </a>
+
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Index - Incident Reporting System</title>
+  <meta name="description" content="Incident Reporting System - report, track and resolve incidents">
+  <meta name="keywords" content="incident, reporting, tracking, system">
+
+  <!-- Favicons -->
+  <link href="{% static 'assets/img/favicon.png' %}" rel="icon">
+  <link href="{% static 'assets/img/apple-touch-icon.png' %}" rel="apple-touch-icon">
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Mulish:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="{%static 'assets/vendor/bootstrap/css/bootstrap.min.css'%}" rel="stylesheet">
+  <link href="{%static 'assets/vendor/bootstrap-icons/bootstrap-icons.css '%}" rel="stylesheet">
+  <link href="{%static 'assets/vendor/aos/aos.css '%}" rel="stylesheet">
+  <link href="{%static 'assets/vendor/glightbox/css/glightbox.min.css '%}" rel="stylesheet">
+  <link href="{%static 'assets/vendor/swiper/swiper-bundle.min.css '%}" rel="stylesheet">
+
+  <!-- Main CSS File -->
+  <link href="{% static 'assets/css/main.css' %}" rel="stylesheet">
+</head>
+
+<body class="index-page">
+
+  <header id="header" class="header d-flex align-items-center fixed-top">
+    <div class="container-fluid container-xl position-relative d-flex align-items-center">
+
+      <a href="{% url 'index' %}" class="logo d-flex align-items-center me-auto">
+        <h1 class="sitename">Incident Reporting System</h1>
+      </a>
+
+      <nav id="navmenu" class="navmenu">
+        <ul>
+          <li><a href="#hero" class="active">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#resume">Reports</a></li>
+          <li><a href="#services">Features</a></li>
+          <li><a href="#portfolio">Analytics</a></li>
+          <li class="dropdown"><a href="#"><span>More</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+            <ul>
+              <li><a href="#contact">Contact</a></li>
+              <li><a href="{% url 'login' %}">Staff Login</a></li>
+              <li><a href="{% url 'signup' %}">Register</a></li>
+            </ul>
+          </li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+        <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+      </nav>
+
+      <a class="btn-getstarted" href="{% url 'login' %}">Get Started</a>
+
+    </div>
+  </header>
+
+  <main class="main">
+
+    <!-- Hero Section -->
+    <section id="hero" class="hero section dark-background">
+
+      <img src="{% static 'assets/img/profile/profile-bg-5.webp' %}" alt="" data-aos="fade-in">
+
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+        <div class="row justify-content-center">
+          <div class="col-lg-8 text-center">
+            <h2>Incident Reporting System</h2>
+            <p>Securely <strong>Report</strong>, <strong>Track</strong>, and <strong>Resolve</strong> incidents — <span class="typed" data-typed-items="Report, Track, Resolve, Notify"></span><span class="typed-cursor" aria-hidden="true"></span></p>
+            <p class="lead">Log incidents with structured fields (date, type, severity, description) and follow them through to closure.</p>
+            <div class="social-links">
+              <a href="#"><i class="bi bi-twitter-x"></i></a>
+              <a href="#"><i class="bi bi-facebook"></i></a>
+              <a href="#"><i class="bi bi-instagram"></i></a>
+              <a href="#"><i class="bi bi-linkedin"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </section><!-- /Hero Section -->
+
+    <!-- About Section -->
+    <section id="about" class="about section">
+
+      <!-- Section Title -->
+      <div class="container section-title" data-aos="fade-up">
+        <span class="subtitle">About the System</span>
+        <h2>About</h2>
+        <p>This web-based Incident Reporting System helps organizations capture, assign, and resolve incidents in a structured, auditable way.</p>
+      </div><!-- End Section Title -->
+
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+        <div class="row gy-5">
+          <div class="col-lg-4" data-aos="zoom-in" data-aos-delay="150">
+            <div class="profile-card">
+              <div class="profile-header">
+                <div class="profile-avatar">
+                  <img src="{% static 'assets/img/profile/profile-square-3.webp' %}" class="img-fluid" alt="system-logo">
+                </div>
+                <h3>Incident Reporting</h3>
+                <span class="role">Centralized Reporting Portal</span>
+              </div>
+
+              <div class="profile-stats">
+                <div class="stat-item">
+                  <h4>{{ total_reports|default:"- " }}</h4>
+                  <p>Total Reports</p>
+                </div>
+                <div class="stat-item">
+                  <h4>{{ open_reports|default:"- " }}</h4>
+                  <p>Open</p>
+                </div>
+                <div class="stat-item">
+                  <h4>{{ resolved_reports|default:"- " }}</h4>
+                  <p>Resolved</p>
+                </div>
+              </div>
+
+{#              <div class="profile-actions">#}
+{#                <a href="{% url 'report_create' %}" class="btn-primary"><i class="bi bi-plus-lg"></i> Submit Incident</a>#}
+{#                <a href="{% url 'reports' %}" class="btn-secondary"><i class="bi bi-list-check"></i> View Reports</a>#}
+{#              </div>#}
+
+              <div class="social-connect">
+                <a href="#"><i class="bi bi-linkedin"></i></a>
+                <a href="#"><i class="bi bi-github"></i></a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-8" data-aos="fade-left" data-aos-delay="200">
+            <div class="content-wrapper">
+              <div class="bio-section">
+                <div class="section-tag">Why use it</div>
+                <h2>Streamline incident handling across your organization</h2>
+                <p>Record incident metadata (type, severity, location, attachments), assign responsible staff, track status and deadlines, and produce reports for analysis and compliance.</p>
+                <p>Notifications keep responsible personnel informed and built-in search & filters help monitor incident history and spot patterns.</p>
+              </div>
+
+              <div class="details-grid">
+                <div class="detail-item" data-aos="fade-up" data-aos-delay="250">
+                  <i class="bi bi-briefcase"></i>
+                  <div class="detail-content">
+                    <span>Use Case</span>
+                    <strong>Internal Reporting</strong>
+                  </div>
+                </div>
+
+                <div class="detail-item" data-aos="fade-up" data-aos-delay="300">
+                  <i class="bi bi-bell"></i>
+                  <div class="detail-content">
+                    <span>Notifications</span>
+                    <strong>Email & In-app</strong>
+                  </div>
+                </div>
+
+                <div class="detail-item" data-aos="fade-up" data-aos-delay="350">
+                  <i class="bi bi-search"></i>
+                  <div class="detail-content">
+                    <span>Monitoring</span>
+                    <strong>Search & Filters</strong>
+                  </div>
+                </div>
+
+                <div class="detail-item" data-aos="fade-up" data-aos-delay="100">
+                  <i class="bi bi-graph-up-arrow"></i>
+                  <div class="detail-content">
+                    <span>Analytics</span>
+                    <strong>Incident Trends</strong>
+                  </div>
+                </div>
+
+                <div class="detail-item" data-aos="fade-up" data-aos-delay="150">
+                  <i class="bi bi-shield-lock"></i>
+                  <div class="detail-content">
+                    <span>Security</span>
+                    <strong>Role-based Access</strong>
+                  </div>
+                </div>
+
+                <div class="detail-item" data-aos="fade-up" data-aos-delay="200">
+                  <i class="bi bi-hdd-stack"></i>
+                  <div class="detail-content">
+                    <span>Storage</span>
+                    <strong>SQLite / PostgreSQL</strong>
+                  </div>
+                </div>
+              </div>
+
+              <div class="skills-showcase" data-aos="fade-up" data-aos-delay="250">
+                <div class="section-tag">Tech Stack</div>
+                <h3>Django, Bootstrap & JS</h3>
+
+                <div class="skills-list skills-animation">
+                  <div class="skill-item">
+                    <div class="skill-info">
+                      <span class="skill-name">Backend</span>
+                      <span class="skill-percent">Django</span>
+                    </div>
+                    <div class="progress"><div class="progress-bar" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div></div>
+                  </div>
+
+                  <div class="skill-item">
+                    <div class="skill-info">
+                      <span class="skill-name">Frontend</span>
+                      <span class="skill-percent">Bootstrap</span>
+                    </div>
+                    <div class="progress"><div class="progress-bar" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100"></div></div>
+                  </div>
+
+                  <div class="skill-item">
+                    <div class="skill-info">
+                      <span class="skill-name">DB</span>
+                      <span class="skill-percent">SQLite/Postgres</span>
+                    </div>
+                    <div class="progress"><div class="progress-bar" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </section><!-- /About Section -->
+
+    <!-- Reports Section (was Resume) -->
+    <section id="resume" class="resume section">
+
+      <!-- Section Title -->
+      <div class="container section-title" data-aos="fade-up">
+        <span class="subtitle">Reports</span>
+        <h2>Recent Incidents</h2>
+        <p>Latest reports submitted to the system. Click to view details, change status, or assign personnel.</p>
+      </div><!-- End Section Title -->
+
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+        <div class="row gy-5">
+          <div class="col-lg-6">
+            <div class="experience-section">
+              <div class="section-header" data-aos="fade-right" data-aos-delay="200">
+                <div class="header-content">
+                  <span class="section-badge">Open</span>
+                  <h2>Pending Incidents</h2>
+                  <p>Incidents that require triage or assignment.</p>
+                </div>
+              </div>
+
+              <div class="experience-cards">
+                <!-- Example incident cards (replace with Django loop in real app) -->
+                <div class="exp-card featured" data-aos="zoom-in" data-aos-delay="300">
+                  <div class="card-header">
+                    <div class="company-logo"><i class="bi bi-exclamation-triangle"></i></div>
+                    <div class="period-badge">High</div>
+                  </div>
+                  <div class="card-body">
+                    <h3>Network Outage - Floor 3</h3>
+                    <p class="company-name">Reported by: user@example.com</p>
+                    <span class="duration">2025-12-10</span>
+                    <p class="description">Widespread network connectivity loss affecting multiple workstations.</p>
+                    <div class="skills-tags">
+                      <span class="skill-tag">Unassigned</span>
+                      <span class="skill-tag">Network</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="exp-card" data-aos="zoom-in" data-aos-delay="350">
+                  <div class="card-header"><div class="company-logo"><i class="bi bi-droplet"></i></div></div>
+                  <div class="card-body">
+                    <h3>Water Leak - Storage</h3>
+                    <p class="company-name">Reported by: facilities@example.com</p>
+                    <span class="duration">2025-12-09</span>
+                    <p class="description">Ceiling leak near server rack — potential hardware risk.</p>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-6">
+            <div class="education-section">
+              <div class="section-header" data-aos="fade-left" data-aos-delay="200">
+                <div class="header-content">
+                  <span class="section-badge">Resolved</span>
+                  <h2>Recently Resolved</h2>
+                  <p>Incidents that have been closed with notes and resolution steps.</p>
+                </div>
+              </div>
+
+              <div class="education-timeline" data-aos="fade-left" data-aos-delay="300">
+                <div class="timeline-track">
+                  <div class="timeline-item">
+                    <div class="timeline-marker">
+                      <i class="bi bi-check-circle-fill"></i>
+                    </div>
+                    <div class="timeline-content">
+                      <div class="education-meta">
+                        <span class="year-range">2025-12-08</span>
+                        <span class="degree-level">Resolved</span>
+                      </div>
+                      <h4>Unauthorized Access Alert</h4>
+                      <p class="institution">Handled by: Security Team</p>
+                      <p class="description">Account locked and password reset performed. No data breach detected.</p>
+                    </div>
+                  </div>
+
+                  <div class="timeline-item">
+                    <div class="timeline-marker"><i class="bi bi-check2-square"></i></div>
+                    <div class="timeline-content">
+                      <div class="education-meta">
+                        <span class="year-range">2025-12-05</span>
+                        <span class="degree-level">Resolved</span>
+                      </div>
+                      <h4>Broken Door Lock</h4>
+                      <p class="institution">Facilities Team</p>
+                      <p class="description">Lock replaced; access restored.</p>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </section><!-- /Reports Section -->
+
+    <!-- Features Section (was Services) -->
+    <section id="services" class="services section">
+
+      <!-- Section Title -->
+      <div class="container section-title" data-aos="fade-up">
+        <span class="subtitle">Features</span>
+        <h2>System Features</h2>
+        <p>A quick overview of capabilities provided by this system.</p>
+      </div><!-- End Section Title -->
+
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+        <div class="row gy-4">
+          <div class="col-lg-3 col-md-6" data-aos="zoom-in" data-aos-delay="100">
+            <div class="service-item">
+              <div class="icon-wrapper"><i class="bi bi-file-earmark-text"></i></div>
+              <h4>Structured Reports</h4>
+              <p>Capture type, severity, attachments and location for every incident.</p>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-6" data-aos="zoom-in" data-aos-delay="200">
+            <div class="service-item featured">
+              <div class="featured-tag">Key</div>
+              <div class="icon-wrapper"><i class="bi bi-person-badge"></i></div>
+              <h4>Assign & Track</h4>
+              <p>Assign incidents to staff and follow progress with statuses.</p>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-6" data-aos="zoom-in" data-aos-delay="300">
+            <div class="service-item">
+              <div class="icon-wrapper"><i class="bi bi-bell"></i></div>
+              <h4>Notifications</h4>
+              <p>Email or in-app alerts when an incident is created or updated.</p>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-6" data-aos="zoom-in" data-aos-delay="400">
+            <div class="service-item">
+              <div class="icon-wrapper"><i class="bi bi-search"></i></div>
+              <h4>Search & Filter</h4>
+              <p>Find incidents by date, type, severity or assignee.</p>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-6" data-aos="zoom-in" data-aos-delay="100">
+            <div class="service-item">
+              <div class="icon-wrapper"><i class="bi bi-clipboard-data"></i></div>
+              <h4>Audit Logs</h4>
+              <p>Track edits and status changes for compliance.</p>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-6" data-aos="zoom-in" data-aos-delay="200">
+            <div class="service-item">
+              <div class="icon-wrapper"><i class="bi bi-bar-chart-line"></i></div>
+              <h4>Analytics</h4>
+              <p>Visualize incident trends and hotspots.</p>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-6" data-aos="zoom-in" data-aos-delay="300">
+            <div class="service-item">
+              <div class="icon-wrapper"><i class="bi bi-lock"></i></div>
+              <h4>RBAC</h4>
+              <p>Role-based access to keep data secure.</p>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-6" data-aos="zoom-in" data-aos-delay="400">
+            <div class="service-item">
+              <div class="icon-wrapper"><i class="bi bi-cloud-arrow-up"></i></div>
+              <h4>Attachments</h4>
+              <p>Upload photos or documents with every report.</p>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </section><!-- /Features Section -->
+
+    <!-- Analytics Section (was Portfolio) -->
+    <section id="portfolio" class="portfolio section">
+
+      <!-- Section Title -->
+      <div class="container section-title" data-aos="fade-up">
+        <span class="subtitle">Analytics</span>
+        <h2>Incident Insights</h2>
+        <p>Summary charts and case studies to help reduce repeat incidents.</p>
+      </div><!-- End Section Title -->
+
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+        <div class="isotope-layout" data-default-filter="*" data-layout="masonry" data-sort="original-order">
+          <ul class="portfolio-filters isotope-filters" data-aos="fade-up" data-aos-delay="200">
+            <li data-filter="*" class="filter-active">Overview</li>
+            <li data-filter=".filter-creative">By Type</li>
+            <li data-filter=".filter-digital">By Location</li>
+            <li data-filter=".filter-strategy">By Severity</li>
+            <li data-filter=".filter-development">By Status</li>
+          </ul>
+
+          <div class="row gy-4 isotope-container" data-aos="fade-up" data-aos-delay="300">
+            <!-- Placeholder cards where charts/widgets can be embedded -->
+            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-creative">
+              <div class="portfolio-card">
+                <div class="portfolio-image-container">
+                  <img src="{% static 'assets/img/portfolio/portfolio-1.webp' %}" alt="Incident by type" class="img-fluid" loading="lazy">
+                  <div class="portfolio-overlay">
+                    <div class="portfolio-info">
+                      <span class="project-category">Trend</span>
+                      <h4>Incidents by Type</h4>
+                    </div>
+                  </div>
+                </div>
+                <div class="portfolio-meta">
+                  <div class="project-tags"><span class="tag">Chart</span></div>
+                  <div class="project-year">Live</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-digital">
+              <div class="portfolio-card">
+                <div class="portfolio-image-container">
+                  <img src="{% static 'assets/img/portfolio/portfolio-2.webp' %}" alt="Heatmap" class="img-fluid" loading="lazy">
+                  <div class="portfolio-overlay">
+                    <div class="portfolio-info">
+                      <span class="project-category">Heatmap</span>
+                      <h4>Location Hotspots</h4>
+                    </div>
+                  </div>
+                </div>
+                <div class="portfolio-meta">
+                  <div class="project-tags"><span class="tag">Map</span></div>
+                  <div class="project-year">Live</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-strategy">
+              <div class="portfolio-card">
+                <div class="portfolio-image-container">
+                  <img src="{% static 'assets/img/portfolio/portfolio-4.webp' %}" alt="Resolution time" class="img-fluid" loading="lazy">
+                  <div class="portfolio-overlay">
+                    <div class="portfolio-info">
+                      <span class="project-category">SLA</span>
+                      <h4>Resolution Times</h4>
+                    </div>
+                  </div>
+                </div>
+                <div class="portfolio-meta">
+                  <div class="project-tags"><span class="tag">SLA</span></div>
+                  <div class="project-year">Live</div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section><!-- /Analytics Section -->
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact section">
+
+      <!-- Section Title -->
+      <div class="container section-title" data-aos="fade-up">
+        <span class="subtitle">Contact</span>
+        <h2>Contact / Support</h2>
+        <p>Contact the admin team for support, onboarding or integration help.</p>
+      </div><!-- End Section Title -->
+
+      <div class="container">
+
+        <div class="row gy-4">
+
+          <div class="col-lg-4">
+            <div class="info-item">
+              <div class="icon-wrapper"><i class="bi bi-geo-alt"></i></div>
+              <div>
+                <h3>Address</h3>
+                <p>Your Organization Address</p>
+              </div>
+            </div>
+
+            <div class="info-item">
+              <div class="icon-wrapper"><i class="bi bi-telephone"></i></div>
+              <div>
+                <h3>Support</h3>
+                <p>+1 (555) 234-5678</p>
+              </div>
+            </div>
+
+            <div class="info-item">
+              <div class="icon-wrapper"><i class="bi bi-envelope"></i></div>
+              <div>
+                <h3>Email</h3>
+                <p>support@yourorg.example</p>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="col-lg-8">
+            <form action="forms/contact.php" method="post" class="php-email-form">
+              <div class="row gy-4">
+
+                <div class="col-md-6">
+                  <input type="text" name="name" class="form-control" placeholder="Your Name" required="">
+                </div>
+
+                <div class="col-md-6">
+                  <input type="email" class="form-control" name="email" placeholder="Your Email" required="">
+                </div>
+
+                <div class="col-md-12">
+                  <input type="text" class="form-control" name="subject" placeholder="Subject (e.g., Support or Integration)" required="">
+                </div>
+
+                <div class="col-md-12">
+                  <textarea class="form-control" name="message" rows="6" placeholder="Message" required=""></textarea>
+                </div>
+
+                <div class="col-md-12 text-center">
+                  <div class="loading">Loading</div>
+                  <div class="error-message"></div>
+                  <div class="sent-message">Your message has been sent. Thank you!</div>
+
+                  <button type="submit">Send Message</button>
+                </div>
+
+              </div>
+            </form>
+          </div>
+
+        </div>
+
+      </div>
+
+    </section><!-- /Contact Section -->
+
+  </main>
+
+  <footer id="footer" class="footer">
+
+    <div class="container footer-top">
+      <div class="row gy-4">
+        <div class="col-lg-5 col-md-12 footer-about">
+          <a href="{% url 'index' %}" class="logo d-flex align-items-center">
+            <span class="sitename">Incident Reporting System</span>
+          </a>
+          <p>Centralized internal incident logging and tracking — designed to improve accountability and reduce repeat incidents.</p>
+          <div class="social-links d-flex mt-4">
+            <a href=""><i class="bi bi-twitter-x"></i></a>
+            <a href=""><i class="bi bi-facebook"></i></a>
+            <a href=""><i class="bi bi-instagram"></i></a>
+            <a href=""><i class="bi bi-linkedin"></i></a>
+          </div>
+        </div>
+
+        <div class="col-lg-2 col-6 footer-links">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="#hero">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#resume">Reports</a></li>
+            <li><a href="#services">Features</a></li>
+            <li><a href="#portfolio">Analytics</a></li>
+          </ul>
+        </div>
+
+        <div class="col-lg-2 col-6 footer-links">
+          <h4>Resources</h4>
+          <ul>
+            <li><a href="#">Docs</a></li>
+            <li><a href="#">API</a></li>
+            <li><a href="#">Privacy</a></li>
+            <li><a href="#">Terms</a></li>
+            <li><a href="#">Support</a></li>
+          </ul>
+        </div>
+
+        <div class="col-lg-3 col-md-12 footer-contact text-center text-md-start">
+          <h4>Contact Us</h4>
+          <p>Your Organization</p>
+          <p>City, Country</p>
+          <p class="mt-4"><strong>Phone:</strong> <span>+1 5589 55488 55</span></p>
+          <p><strong>Email:</strong> <span>support@yourorg.example</span></p>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="container copyright text-center mt-4">
+      <p>© <span>Copyright</span> <strong class="px-1 sitename">Incident Reporting System</strong> <span>All Rights Reserved</span></p>
+      <div class="credits">
+        Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+      </div>
+    </div>
+
+  </footer>
+
+  <!-- Scroll Top -->
+  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Preloader -->
+  <div id="preloader"></div>
+
+  <!-- Vendor JS Files -->
+  <script src="{%static 'assets/vendor/bootstrap/js/bootstrap.bundle.min.js'%}"></script>
+  <script src="{%static 'assets/vendor/php-email-form/validate.js'%}"></script>
+  <script src="{%static 'assets/vendor/aos/aos.js'%}"></script>
+  <script src="{%static 'assets/vendor/typed.js/typed.umd.js'%}"></script>
+  <script src="{%static 'assets/vendor/waypoints/noframework.waypoints.js'%}"></script>
+  <script src="{%static 'assets/vendor/glightbox/js/glightbox.min.js'%}"></script>
+  <script src="{%static 'assets/vendor/imagesloaded/imagesloaded.pkgd.min.js'%}"></script>
+  <script src="{%static 'assets/vendor/isotope-layout/isotope.pkgd.min.js'%}"></script>
+  <script src="{%static 'assets/vendor/swiper/swiper-bundle.min.js'%}"></script>
+
+  <!-- Main JS File -->
+  <script src="{% static 'assets/js/main.js' %}"></script>
+
+</body>
+
+</html>

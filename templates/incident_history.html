@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Incident History</h2>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Incident</th>
+            <th>Action</th>
+            <th>Performed By</th>
+            <th>Timestamp</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for h in history %}
+        <tr>
+            <td>{{ h.incident.title|default:h.incident_title }}</td>
+            <td>{{ h.get_action_type_display }}</td>
+            <td>{{ h.performed_by.username|default:"Unknown" }}</td>
+            <td>{{ h.timestamp }}</td>
+        </tr>
+        {% empty %}
+        <tr><td colspan="4">No history found.</td></tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
