@@ -25,7 +25,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY','unsafe-dev-key')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ["alayham-almadhaji-icident-report.onrender.com"]
+ALLOWED_HOSTS = ["icident-report.onrender.com"]
 
 
 # Application definition
