@@ -1,1 +1,1 @@
-web: gunicorn IncidentReport.wsgi
+web: gunicorn IncidentReport.wsgi:application
