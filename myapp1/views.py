@@ -4,6 +4,13 @@ from django.contrib import messages
 from django.views.decorators.cache import never_cache
 #from django.contrib.auth.decorators import login_required
 
+from django.contrib.auth.models import User
+
+def create_admin():
+    if not User.objects.filter(username="admin1").exists():
+        User.objects.create_superuser(
+            "admin1", "admin@example.com", "admin123"
+        )
 
 
 def index(request):
