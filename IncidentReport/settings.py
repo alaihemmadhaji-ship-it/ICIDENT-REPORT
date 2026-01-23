@@ -39,6 +39,11 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 ]
+CSRF_TRUSTED_ORIGINS = [
+    'https://icident-report-otte.onrender.com',
+    'https://incident-report.onrender.com',
+]
+
 
 MIDDLEWARE = [
 
